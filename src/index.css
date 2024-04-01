@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +13,47 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+.mountain-bg {
+  background-image: url(./assets/ForecastDaily/MountainsBG.png);
+  background-repeat: no-repeat;
+  background-position: 0 300px;
+}
+
+
+.forecast-items-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto; /* Изменено на автоматическую ширину */
+  flex-wrap: nowrap; /* Запрет переноса элементов на новую строку */
+}
+
+.forecast-item {
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Добавляем задержку к свойству transform */
+  margin-right: 16px; /* Расстояние между элементами */
+}
+
+.forecast-item.selected {
+  opacity: 1;
+  transform: scale(1.1); /* Для выбранного элемента увеличиваем масштаб */
+}
+.forecast-item p {
+  font-size: 15px;
+}
+
+.forecast-item.empty {
+  visibility: hidden;
+}
+
+.forecast-item.selected p {
+  font-size: 17px;
+}
+
+.forecast-item.selected img {
+  width: 30px;
 }
