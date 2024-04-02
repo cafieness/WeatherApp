@@ -63,8 +63,8 @@ const Search = ({ onSearchChange }) => {
           onClick={(event) => handleButtonClick(event)}
         >
           <img className="self-start w-[26px]" src={LocationIcon} alt="" />
-          <div className="text-xl mb-8"> {selectedCity} </div>
-          <img className="self-start mt-1" src={ArrowIcon} alt="" />
+          <div className="text-xl md:text-2xl mr-2 md:mr-0 md:mb-8"> {selectedCity} </div>
+          <img className="rotate-90 mt-[6px] md:rotate-0 self-start w-[8px] md:mt-1" src={ArrowIcon} alt="" />
         </div>
       )}
 
@@ -94,11 +94,21 @@ const customStyles = {
     cursor: 'text',
     padding: '0 0 0 10px',
     width: '230px',
+    fontSize: '16px',
+    '@media (max-width: 768px)': {
+      width: '180px',
+      fontSize: '14px',
+    },
+    '@media (max-width: 1024px)': {
+      width: '220px',
+      fontSize: '16px',
+    },
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? "#DEAB4D" : null,
     color: "black",
+    fontSize: '14px',
   }),
   dropdownIndicator: () => ({
       display: 'none',
@@ -109,6 +119,13 @@ const customStyles = {
   menu: (provided, state) => ({
     ...provided,
     width: '230px',
+    '@media (max-width: 768px)': {
+      width: '180px',
+    },
+    '@media (max-width: 1024px)': {
+      width: '220px',
+      fontSize: '16px',
+    },
   }),
 };
 

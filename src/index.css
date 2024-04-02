@@ -18,29 +18,33 @@ code {
   font-family: "Inter", sans-serif;
 }
 .mountain-bg {
-  background-image: url(./assets/ForecastDaily/MountainsBG.png);
+  background-image: url(./assets/Forecast/MountainsBG.png);
   background-repeat: no-repeat;
   background-position: 0 300px;
 }
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .forecast-items-container {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: auto; /* Изменено на автоматическую ширину */
-  flex-wrap: nowrap; /* Запрет переноса элементов на новую строку */
+  width: auto;
+  flex-wrap: nowrap;
 }
 
 .forecast-item {
   opacity: 0.5;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Добавляем задержку к свойству transform */
-  margin-right: 16px; /* Расстояние между элементами */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  margin-right: 16px;
 }
 
 .forecast-item.selected {
   opacity: 1;
-  transform: scale(1.1); /* Для выбранного элемента увеличиваем масштаб */
+  transform: scale(1.1);
 }
 .forecast-item p {
   font-size: 15px;
@@ -56,4 +60,10 @@ code {
 
 .forecast-item.selected img {
   width: 30px;
+}
+.rainy-background {
+  background-image: url('./assets/Forecast/RainBG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

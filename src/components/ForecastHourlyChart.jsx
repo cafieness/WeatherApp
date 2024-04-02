@@ -1,9 +1,12 @@
 import React from "react";
 import WeatherData from "../utils/WeatherIcons";
 import { XAxis, Tooltip, YAxis, AreaChart, Area, LabelList, ReferenceDot } from "recharts";
+import { useMedia } from 'react-use';
 
 function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, handleMouseEnter, handleMouseLeave }) {
-
+  const isSmallMobile = useMedia('(max-width: 375px)');
+  const isMobile = useMedia('(max-width: 768px)');
+  const isTablet = useMedia('(max-width: 1024px)');
   const renderCustomLabels = ({ x, y, value, index }) => {
     const dataPoint = temperatureData[index];
     const xText = x;
@@ -79,7 +82,7 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
 
   return (
     <AreaChart
-      width={800}
+      width={isSmallMobile ? 280 : isMobile ? 360 : isTablet ? 600 : 800}
       height={200}
       data={temperatureData}
       margin={{ top: -50, bottom: 20, left: 40, right: 30 }}
@@ -98,12 +101,13 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
         fill="none"
         stroke="#FFC355"
         strokeWidth="2px"
-        data={temperatureData.slice(0, 8)}
+        data={temperatureData.slice(0, isSmallMobile ? 3 : isMobile ? 4  : isTablet ? 6 : 8)}
       >
         <LabelList dataKey="timestamp" content={renderCustomLabels} />
       </Area>
       {!isHovering && xAxisTicks}
     </AreaChart>
+
   );
 }
 

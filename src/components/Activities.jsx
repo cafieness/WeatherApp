@@ -4,10 +4,10 @@ import ActivityImg02 from "../assets/Activities/ActivityImg02.png";
 import ActivityImg03 from "../assets/Activities/ActivityImg03.png";
 import ActivityImg04 from "../assets/Activities/ActivityImg04.png";
 
-function Activities() {
+function Activities({rain}) {
   return (
-    <div className="bg-[#DEAB4D] rounded-[40px] px-8 pt-5 pb-10 mb-8">
-      <div className="flex mb-10">
+    <div className={`${rain ? "bg-[#ACA0B766]" : "bg-[#DEAB4D]"} rounded-[40px] px-8 pt-5 pb-12 mb-2`}>
+      <div className="flex mb-8">
         <img className="w-[30px] mr-2" src={HeartImg} alt="" />
         <p className="text-2xl">Activities in your area</p>
       </div>
