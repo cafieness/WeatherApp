@@ -11,16 +11,19 @@ This project is a weather forecast application built using React. It allows user
 
 ### `git clone https://github.com/camilachoroeva/WeatherApp.git`
 
+2. Navigate to the Project Directory:
 
-2. Install Dependencies:
+### `cd .\WeatherApp\`
+
+3. Install Dependencies:
 
 ### `yarn install`
 
-3. Run the Application:
+4. Run the Application:
 
 ### `yarn start`
 
-4. Open [http://localhost:3000](https://pages.github.com/) to view it in your browser.
+5. Open [http://localhost:3000](https://pages.github.com/) to view it in your browser.
 
 ## How to Use the Application
 

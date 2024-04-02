@@ -1,12 +1,26 @@
 import React from "react";
 import WeatherData from "../utils/WeatherIcons";
-import { XAxis, Tooltip, YAxis, AreaChart, Area, LabelList, ReferenceDot } from "recharts";
-import { useMedia } from 'react-use';
+import {
+  XAxis,
+  Tooltip,
+  YAxis,
+  AreaChart,
+  Area,
+  LabelList,
+  ReferenceDot,
+} from "recharts";
+import { useMedia } from "react-use";
 
-function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, handleMouseEnter, handleMouseLeave }) {
-  const isSmallMobile = useMedia('(max-width: 375px)');
-  const isMobile = useMedia('(max-width: 768px)');
-  const isTablet = useMedia('(max-width: 1024px)');
+function ForecastHourlyChart({
+  temperatureData,
+  currentWeather,
+  isHovering,
+  handleMouseEnter,
+  handleMouseLeave,
+}) {
+  const isSmallMobile = useMedia("(max-width: 375px)");
+  const isMobile = useMedia("(max-width: 768px)");
+  const isTablet = useMedia("(max-width: 1024px)");
   const renderCustomLabels = ({ x, y, value, index }) => {
     const dataPoint = temperatureData[index];
     const xText = x;
@@ -16,16 +30,16 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
     const yLineEnd = y + 45;
     const weatherIcon = WeatherData[dataPoint.icon];
 
-    let temperatureText = '';
+    let temperatureText = "";
     if (index === 0) {
       temperatureText = `${Math.round(currentWeather.temp)}°`;
     } else {
       temperatureText = `${Math.round(dataPoint.temperature)}°`;
     }
 
-    let labelText = '';
+    let labelText = "";
     if (index === 0) {
-      labelText = 'Now';
+      labelText = "Now";
     } else {
       labelText = new Date(dataPoint.timestamp)
         .toLocaleTimeString("en-US", { hour12: false })
@@ -43,16 +57,45 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
           strokeWidth="2"
           strokeDasharray="3 3"
         />
-        <text x={xText} y={yText} dy={53} textAnchor="middle" fill="white" fontSize="8px">
+        <text
+          x={xText}
+          y={yText}
+          dy={53}
+          textAnchor="middle"
+          fill="white"
+          fontSize="8px"
+        >
           {Number(dataPoint.windSpeed * 3.6).toFixed(1)}km/h
         </text>
-        <text x={xText} y={yText} dy={63} textAnchor="middle" fill="white" fontSize="8px">
+        <text
+          x={xText}
+          y={yText}
+          dy={63}
+          textAnchor="middle"
+          fill="white"
+          fontSize="8px"
+        >
           {labelText}
         </text>
-        <text x={xText + 3} y={yText - 20} dy={-5} textAnchor="middle" fill="white" fontSize="14px">
+        <text
+          x={xText + 3}
+          y={yText - 20}
+          dy={-5}
+          textAnchor="middle"
+          fill="white"
+          fontSize="14px"
+        >
           {temperatureText}
         </text>
-        {weatherIcon && <image x={xText - 13} y={yText + 20} href={weatherIcon.icon} width="25" height="25" />}
+        {weatherIcon && (
+          <image
+            x={xText - 13}
+            y={yText + 20}
+            href={weatherIcon.icon}
+            width="25"
+            height="25"
+          />
+        )}
       </g>
     );
   };
@@ -71,7 +114,7 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
       />
     ) : null;
 
-  const temperatures = temperatureData.map(data => data.temperature);
+  const temperatures = temperatureData.map((data) => data.temperature);
   const minY = Math.min(...temperatures) - 2;
   const maxY = Math.max(...temperatures) + 2;
 
@@ -89,10 +132,7 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
       onMouseOver={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <XAxis
-        dataKey="timestamp"
-        hide
-      />
+      <XAxis dataKey="timestamp" hide />
       <YAxis dataKey="temperature" hide domain={[adjustedMinY, adjustedMaxY]} />
       <Tooltip active={false} />
       <Area
@@ -101,13 +141,15 @@ function ForecastHourlyChart({ temperatureData, currentWeather, isHovering, hand
         fill="none"
         stroke="#FFC355"
         strokeWidth="2px"
-        data={temperatureData.slice(0, isSmallMobile ? 3 : isMobile ? 4  : isTablet ? 6 : 8)}
+        data={temperatureData.slice(
+          0,
+          isSmallMobile ? 3 : isMobile ? 4 : isTablet ? 6 : 8
+        )}
       >
         <LabelList dataKey="timestamp" content={renderCustomLabels} />
       </Area>
       {!isHovering && xAxisTicks}
     </AreaChart>
-
   );
 }
 

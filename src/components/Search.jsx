@@ -8,18 +8,18 @@ const Search = ({ onSearchChange }) => {
   const [searchInput, setSearchInput] = useState("");
   const [showSearchOptions, setShowSearchOptions] = useState(false);
   const searchRef = useRef(null);
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
-    const storedCity = localStorage.getItem('selectedCity');
+    const storedCity = localStorage.getItem("selectedCity");
     if (storedCity) {
       setSelectedCity(storedCity);
       setSearchInput(storedCity);
-      onSearchChange({ value: localStorage.getItem('selectedCityCoords') });
+      onSearchChange({ value: localStorage.getItem("selectedCityCoords") });
     } else {
-      setSelectedCity('New York City, US');
-      setSearchInput('New York City, US');
-      onSearchChange({ value: '40.7128 -74.0060' });
+      setSelectedCity("New York City, US");
+      setSearchInput("New York City, US");
+      onSearchChange({ value: "40.7128 -74.0060" });
     }
   }, [onSearchChange]);
 
@@ -39,8 +39,8 @@ const Search = ({ onSearchChange }) => {
   const handleSearchChange = (selectedSuggestion) => {
     setSearchInput(selectedSuggestion.label);
     setSelectedCity(selectedSuggestion.label);
-    localStorage.setItem('selectedCity', selectedSuggestion.label);
-    localStorage.setItem('selectedCityCoords', selectedSuggestion.value);
+    localStorage.setItem("selectedCity", selectedSuggestion.label);
+    localStorage.setItem("selectedCityCoords", selectedSuggestion.value);
     onSearchChange(selectedSuggestion);
   };
 
@@ -50,7 +50,7 @@ const Search = ({ onSearchChange }) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       setShowSearchOptions(false);
     }
   };
@@ -63,8 +63,14 @@ const Search = ({ onSearchChange }) => {
           onClick={(event) => handleButtonClick(event)}
         >
           <img className="self-start w-[26px]" src={LocationIcon} alt="" />
-          <div className="text-xl md:text-2xl mr-2 md:mr-0 md:mb-8"> {selectedCity} </div>
-          <img className="rotate-90 mt-[6px] md:rotate-0 self-start w-[8px] md:mt-1" src={ArrowIcon} alt="" />
+          <div className="text-xl md:text-2xl mr-2 md:mr-0 md:mb-8">
+             {selectedCity} 
+          </div>
+          <img
+            className="rotate-90 mt-[6px] md:rotate-0 self-start w-[8px] md:mt-1"
+            src={ArrowIcon}
+            alt=""
+          />
         </div>
       )}
 
@@ -91,40 +97,40 @@ const customStyles = {
     borderRadius: "40px",
     border: 0,
     boxShadow: "none",
-    cursor: 'text',
-    padding: '0 0 0 10px',
-    width: '230px',
-    fontSize: '16px',
-    '@media (max-width: 768px)': {
-      width: '180px',
-      fontSize: '14px',
+    cursor: "text",
+    padding: "0 0 0 10px",
+    width: "230px",
+    fontSize: "16px",
+    "@media (max-width: 768px)": {
+      width: "180px",
+      fontSize: "14px",
     },
-    '@media (max-width: 1024px)': {
-      width: '220px',
-      fontSize: '16px',
+    "@media (max-width: 1024px)": {
+      width: "220px",
+      fontSize: "16px",
     },
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? "#DEAB4D" : null,
     color: "black",
-    fontSize: '14px',
+    fontSize: "14px",
   }),
   dropdownIndicator: () => ({
-      display: 'none',
+    display: "none",
   }),
   indicatorSeparator: () => ({
-      display: 'none',
+    display: "none",
   }),
   menu: (provided, state) => ({
     ...provided,
-    width: '230px',
-    '@media (max-width: 768px)': {
-      width: '180px',
+    width: "230px",
+    "@media (max-width: 768px)": {
+      width: "180px",
     },
-    '@media (max-width: 1024px)': {
-      width: '220px',
-      fontSize: '16px',
+    "@media (max-width: 1024px)": {
+      width: "220px",
+      fontSize: "16px",
     },
   }),
 };

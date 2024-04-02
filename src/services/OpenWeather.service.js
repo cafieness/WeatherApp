@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
-export const WEATHER_API_KEY = '89a2173d9e7a8557d64eab9d8889aaea';
+export const WEATHER_API_KEY = "89a2173d9e7a8557d64eab9d8889aaea";
 export const WEATHER_API_URL = "https://api.openweathermap.org/data/3.0";
 export const geoApiOptions = {
   method: "GET",
@@ -10,7 +10,6 @@ export const geoApiOptions = {
   },
 };
 export const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
-
 
 export const fetchCityInformation = (inputValue) => {
   return fetch(
@@ -50,15 +49,12 @@ export const fetchHourlyForecast = async (lat, lon, selectedDay) => {
     const data = await response.json();
 
     const filteredData = data.list.filter(
-      (item) =>
-        item.dt_txt >= dateString && // Больше или равно начальной дате
-        item.dt_txt < endDateString // Меньше конечной даты
+      (item) => item.dt_txt >= dateString && item.dt_txt < endDateString
     );
 
-    // Если выбран сегодняшний день и данных для него меньше 8, добавляем данные из завтрашнего дня
     if (!selectedDay && filteredData.length < 8) {
       const tomorrowData = data.list.filter(
-        (item) => item.dt_txt >= endDateString // Больше или равно началу завтрашнего дня
+        (item) => item.dt_txt >= endDateString
       );
       filteredData.push(...tomorrowData.slice(0, 8 - filteredData.length));
     }
@@ -74,7 +70,7 @@ export const fetchHourlyForecast = async (lat, lon, selectedDay) => {
     return hourlyData;
   } catch (error) {
     console.error("Error fetching hourly weather data:", error);
-    throw error; // Прокидываем ошибку наверх для обработки в компоненте
+    throw error;
   }
 };
 function useWeatherData() {
@@ -82,11 +78,12 @@ function useWeatherData() {
   const [prevCoords, setPrevCoords] = useState({ lat: null, lon: null });
 
   const fetchWeatherData = useCallback((lat, lon) => {
-    console.log('fetching data');
-    fetch(`${WEATHER_API_URL}/onecall?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`)
+    fetch(
+      `${WEATHER_API_URL}/onecall?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+    )
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
@@ -96,19 +93,19 @@ function useWeatherData() {
           forecast: daily,
           forecastHourly: hourly,
           timezone,
-          latt: lat, // Обновляем lat
-          longi: lon, // Обновляем lon
+          latt: lat,
+          longi: lon,
         });
       })
       .catch((error) => {
-        console.error('Error fetching weather data:', error);
+        console.error("Error fetching weather data:", error);
       });
   }, []);
 
   const handleOnSearchChange = (searchData) => {
-    const [lat, lon] = searchData.value.split(' ');
+    const [lat, lon] = searchData.value.split(" ");
     if (lat !== prevCoords.lat || lon !== prevCoords.lon) {
-      setPrevCoords({ lat, lon }); // Обновляем предыдущие координаты
+      setPrevCoords({ lat, lon });
       fetchWeatherData(lat, lon);
     }
   };

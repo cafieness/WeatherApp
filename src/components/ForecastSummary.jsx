@@ -8,7 +8,7 @@ function ForecastSummary({ currentWeather, selectedDay, timezone }) {
 
   useEffect(() => {
     setForecastData(selectedDay || currentWeather);
-  }, [currentWeather, selectedDay, timezone]); // Включаем timezone в зависимости
+  }, [currentWeather, selectedDay, timezone]);
 
   const formatDateTime = (time) => {
     const date = new Date(time * 1000);

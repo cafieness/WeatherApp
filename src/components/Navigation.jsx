@@ -5,7 +5,7 @@ import WeatherIcon from "../assets/Navigation/WeatherIcon.png";
 import ExploreIcon from "../assets/Navigation/ExploreIcon.png";
 import SettingsIcon from "../assets/Navigation/SettingsIcon.png";
 
-function Navigation({rain}) {
+function Navigation({ rain }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,8 +13,17 @@ function Navigation({rain}) {
   };
 
   return (
-    <div className={`${rain ? "lg:bg-[#ACA0B766]" : "lg:bg-[#DEAB4D]"} lg:rounded-[40px] lg:mr-2 lg:py-6 lg:w-24 flex flex-col text-center relative`}>
-      <img className="w-[30px] md:w-[50px] mb-6 lg:hidden" src={UserAvatar} alt="" onClick={toggleMenu} />
+    <div
+      className={`${
+        rain ? "lg:bg-[#ACA0B766]" : "lg:bg-[#DEAB4D]"
+      } lg:rounded-[40px] lg:mr-2 lg:py-6 lg:w-24 flex flex-col text-center relative`}
+    >
+      <img
+        className="w-[30px] md:w-[50px] mb-6 lg:hidden"
+        src={UserAvatar}
+        alt=""
+        onClick={toggleMenu}
+      />
       <div className="hidden lg:flex flex-col items-center">
         <img className="w-[50px] mb-20" src={UserAvatar} alt="" />
         <div className="w-[50px] mb-5">

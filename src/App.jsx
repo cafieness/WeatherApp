@@ -33,10 +33,14 @@ function App() {
     } else {
       setIsRaining(false);
     }
-  }, [currentWeather]);
+  }, [currentWeather, selectedDayData]);
 
   return (
-    <div className={` ${isRaining ? 'rainy-background' : 'bg-[#D69E36]'} text-white overflow-hidden font-inter h-screen  min-h-[932px]  lg:flex justify-center`}>
+    <div
+      className={` ${
+        isRaining ? "rainy-background" : "bg-[#D69E36]"
+      } text-white overflow-hidden font-inter h-screen  min-h-[932px]  lg:flex justify-center`}
+    >
       <div className="pt-10 lg:pb-8 max-w-[1440px]">
         <div className="px-8 lg:px-0 lg:flex lg:justify-between lg:pl-8 lg:mb-4">
           <div className="xl:pl-16 lg:mt-4">
@@ -67,7 +71,7 @@ function App() {
           </div>
         </div>
         <div>
-        <div className="xl:hidden mb-6">
+          <div className="xl:hidden mb-6">
             {forecast && (
               <ForecastDaily
                 forecastHourly={forecastHourly}
@@ -78,42 +82,39 @@ function App() {
               />
             )}
           </div>
-        <div className="flex justify-center items-center xl:items-start flex-col lg:flex-row">
-          
-          <div className="hidden lg:block">
-            <Navigation rain={isRaining} />
-          </div>
-          <div className="xl:mr-2">
+          <div className="flex justify-center items-center xl:items-start flex-col lg:flex-row">
             <div className="hidden lg:block">
-              <Activities rain={isRaining} />
+              <Navigation rain={isRaining} />
             </div>
-            <div>
-            {forecastHourly && (
-              <ForecastHourly
-                latt={latt}
-                longi={longi}
-                currentWeather={currentWeather}
-                selectedDay={selectedDayData}
-                rain={isRaining}
-              />
-            )}
+            <div className="xl:mr-2">
+              <div className="hidden lg:block">
+                <Activities rain={isRaining} />
+              </div>
+              <div>
+                {forecastHourly && (
+                  <ForecastHourly
+                    latt={latt}
+                    longi={longi}
+                    currentWeather={currentWeather}
+                    selectedDay={selectedDayData}
+                    rain={isRaining}
+                  />
+                )}
+              </div>
             </div>
-
-          </div>
-          <div className="hidden xl:block">
-            {forecast && (
-              <ForecastDaily
-                forecastHourly={forecastHourly}
-                forecast={forecast}
-                timezone={timezone}
-                onDayChange={handleDaySelect}
-                rain={isRaining}
-              />
-            )}
+            <div className="hidden xl:block">
+              {forecast && (
+                <ForecastDaily
+                  forecastHourly={forecastHourly}
+                  forecast={forecast}
+                  timezone={timezone}
+                  onDayChange={handleDaySelect}
+                  rain={isRaining}
+                />
+              )}
+            </div>
           </div>
         </div>
-        </div>
-
       </div>
     </div>
   );

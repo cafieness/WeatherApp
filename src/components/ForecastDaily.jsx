@@ -5,7 +5,13 @@ import UvIcon from "../assets/Forecast/UvIcon.png";
 import RainIcon from "../assets/Forecast/RainIcon.png";
 import WindIcon from "../assets/Forecast/WindIcon.png";
 
-function ForecastDaily({ forecastHourly, forecast, timezone, onDayChange, rain }) {
+function ForecastDaily({
+  forecastHourly,
+  forecast,
+  timezone,
+  onDayChange,
+  rain,
+}) {
   const [currentWeather, setCurrentWeather] = useState(forecast[0]);
   const [isToday, setIsToday] = useState(true);
   const [currentDateTime, setCurrentDateTime] = useState("");
@@ -86,8 +92,16 @@ function ForecastDaily({ forecastHourly, forecast, timezone, onDayChange, rain }
   );
 
   return (
-    <div className={`${rain ? "xl:bg-[#ACA0B766]" : "xl:bg-[#DEAB4D]"}  xl:mountain-bg xl:rounded-[40px] pt-6 lg:pt-9 px-1 flex flex-col justify-center xl:w-[324px]`}>
-      <DayPicker forecast={forecast.slice(0, 5)} onDaySelect={onDaySelect} rain={rain} />
+    <div
+      className={`${
+        rain ? "xl:bg-[#ACA0B766]" : "xl:bg-[#DEAB4D]"
+      }  xl:mountain-bg xl:rounded-[40px] pt-6 lg:pt-9 px-1 flex flex-col justify-center xl:w-[324px]`}
+    >
+      <DayPicker
+        forecast={forecast.slice(0, 5)}
+        onDaySelect={onDaySelect}
+        rain={rain}
+      />
       <div className="hidden xl:block">
         <div className="flex justify-center mb-4">
           <p className="text-lg h-[30px]">{currentDateTime}</p>
