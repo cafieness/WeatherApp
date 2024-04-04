@@ -9,7 +9,7 @@ This project is a weather forecast application built using React. It allows user
 
 1. Clone the Repository:
 
-### `git clone https://github.com/camilachoroeva/WeatherApp.git`
+### `git clone https://github.com/cafieness/WeatherApp.git`
 
 2. Navigate to the Project Directory:
 
